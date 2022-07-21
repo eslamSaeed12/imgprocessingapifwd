@@ -4,12 +4,13 @@ import { FileHelper } from './modules/@file-helper';
 import { ImgTransformer } from './modules/@img-transformer';
 import { join } from 'path';
 
-const imgHelper = new FileHelper(join(process.cwd(), 'images'));
+const assetsPath = join(process.cwd(), 'images');
 
-const imgTransformer = new ImgTransformer();
+const imgHelper = new FileHelper(assetsPath);
+
+const imgTransformer = new ImgTransformer(assetsPath);
 
 const app = express();
-
 
 // end point to check api helath status
 app.get('/api/health', (req: Request, res: Response) => {
@@ -33,24 +34,35 @@ app.get('/api/images', async function (req: Request, res: Response, next: NextFu
       return res.status(404).send('Image is Not Found !');
     }
 
+    // const file without extension
+    const imgWithoutExt = (filename as string).split('.')[0];
+
+    // check if image already exist with required dimensions
+
+    if (imgHelper.isImgExist(`${imgWithoutExt}-${width}-${height}.jpg`)) {
+      res.setHeader('Content-Type', 'image/jpeg');
+      return res.sendFile(`${imgWithoutExt}-${width}-${height}.jpg`, { root: assetsPath });
+    }
+
     const img = imgHelper.getImg(<string>filename);
 
-    const output = await imgTransformer.transform({
+    await imgTransformer.transform({
       img,
       width: parseInt(<string>width),
       height: parseInt(<string>height),
+      name: imgWithoutExt,
     });
 
     // cahing the image for 24 hours
-    res.setHeader('Cache-Control', 'public, max-age=86400000');
     res.setHeader('Content-Type', 'image/jpeg');
-    res.send(output);
+    res.sendFile(`${imgWithoutExt}-${width}-${height}.jpg`, { root: assetsPath });
   } catch (err) {
     next(err);
   }
 });
 
 // error handler middleware for showing error message
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((err: Error, req: Request, res: Response) => {
   res.status(500).send(err.message);
 });

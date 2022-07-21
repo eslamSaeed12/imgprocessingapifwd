@@ -10,7 +10,7 @@
     "start": "node dist/main.js",
     "dev": "nodemon src/main.ts --ignore src/test.ts",
     "lint": "eslint . --ext .ts --fix",
-    "prettify": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
   },
   "repository": {
     "type": "git",
