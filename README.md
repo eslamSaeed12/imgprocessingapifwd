@@ -9,6 +9,7 @@ is a web service for image processing.
 - Build
 - Test
 - Run
+- Health Check
 
 ### Install
     npm install
@@ -31,4 +32,4 @@ is a web service for image processing.
 	- `npm run start`
 
 ### Check Health
-GET / `http://localhost:4000/api` to check for api health .
+GET / `http://localhost:4000/api/health` to check for api health .
