@@ -16,7 +16,6 @@ beforeAll(() => {
 });
 
 describe('End Points Test Suites', () => {
-
   it('should return 200 status code', async () => {
     const response = await request.get('/api/health');
     expect(response.status).toBe(200);

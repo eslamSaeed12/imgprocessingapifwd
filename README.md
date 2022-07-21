@@ -29,3 +29,6 @@ is a web service for image processing.
 	 -  `npm run dev `
 - production mode
 	- `npm run start`
+
+### Check Health
+GET / `http://localhost:4000/api` to check for api health .
