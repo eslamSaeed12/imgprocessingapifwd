@@ -1,0 +1,46 @@
+{
+  "name": "imgprocessingapi_fwd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "ts-node node_modules/jasmine/bin/jasmine",
+    "build": "npm run clean && tsc",
+    "clean": "rimraf dist",
+    "start": "node dist/main.js",
+    "dev": "nodemon src/main.ts --ignore src/test.ts",
+    "lint": "eslint . --ext .ts --fix",
+    "prettify": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eslamSaeed12/imgprocessingapifwd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eslamSaeed12/imgprocessingapifwd/issues"
+  },
+  "homepage": "https://github.com/eslamSaeed12/imgprocessingapifwd#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "sharp": "^0.30.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jasmine": "^4.0.3",
+    "@types/sharp": "^0.30.4",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "eslint": "^8.20.0",
+    "jasmine": "^4.2.1",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "supertest": "^6.2.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  }
+}
